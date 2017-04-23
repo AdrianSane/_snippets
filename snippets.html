@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>JS snippets</title>
+    <!--
+      ** SOURCES:
+        - async and defer: http://stackoverflow.com/questions/436411/where-should-i-put-script-tags-in-html-markup
+    -->
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- SCRIPTS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script scr="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.amd.min.js"></script>
+    <script src="js/snippets.js"></script>
+  </head>
+  <body>
+
+
+  <!-- DISPLAY THE CURRENT DATE -->
+  <div id="date"></div>
+
+  <!-- ASYNCRONOUS AND DEFERRING OF SCRIPTS IN THE HEADER -->
+  <p>async - Scripts with the async attribute are executed asynchronously. This means the script is executed as soon as it's downloaded, without blocking the browser in the meantime.</p>
+  <p>defer - Scripts with the defer attribute are executed in order (i.e. first script 1, then script 2). This also does not block the browser. Unlike async scripts, defer scripts are only executed after the entire document has been loaded.</p>
+
+  <!-- GET A RANDOM NUMBER FROM 0 TO 100 -->
+  <h3>Random number from 0 to 100</h3>
+  <p id="random"></p>
+
+
+  <!-- JSON DATA AND AJAX -->
+  <div class="jsonData">
+    <h3>Get JSOn - Ajax Data</h3>
+    <a href="#" id="get-data">Get JSON data</a>
+    <div id="show-data"></div>
+  </div>
+
+
+  <!-- FIND THE AREA-->
+  <div class="areaCalc">
+    <h3>Find the area</h3>
+    <form class="" action="index.html" method="post">
+      <label>width</label><br>
+      <input type="text" name="" value="" id="width">
+      <br>
+      <label>height</label><br>
+      <input type="text" name="" value="" id="height">
+      <br>
+      <button type="button" name="button" id="calculate">calculate</button>
+      <p id="output"></p>
+    </form>
+  </div>
+
+
+  <!-- CLICKTAG -->
+  <div>
+    <h3>Click Tag</h3>
+    <button type="button" name="button" class="click">Click Tag</button>
+    <p id="clickOut"></p>
+  </div>
+
+  <!-- CLICK COUNTER -->
+  <div id="counter">
+    <h3>Click counter</h3>
+    <button type="button" name="button" id="clicks">counter</button>
+  </div>
+
+
+  <!-- Maximum width or height in a set of elements -->
+  <section>
+    <h3>Maximum width or height in a set of elements</h3>
+    <div class="txt">
+      <p>Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro.</p>
+    </div>
+    <div class="txt">
+      <p>Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis.</p>
+    </div>
+    <div class="txt">
+      <p>Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris.</p>
+    </div>
+  </section>
+
+
+
+
+
+
+  </body>
+</html>
