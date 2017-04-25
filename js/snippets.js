@@ -1,4 +1,152 @@
 $(document).ready(function(){// begin snippets
+"use strict";
+// ----------------------------------------------------------------------Sources
+// https://www.tutorialspoint.com/javascript/index.htm
+// https://www.tutorialspoint.com/javascript/javascript_loop_control.htm
+// https://onextrapixel.com/10-useful-and-time-saving-javascript-snippets/
+// https://modernweb.com/45-useful-javascript-tips-tricks-and-best-practices/
+// https://www.codecademy.com/en/forum_questions/557d440ee39efe037e0000cc
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+// https://appendto.com/2016/04/javascript-redirect-how-to-redirect-a-web-page-with-javascript/
+// https://www.w3schools.com/js/js_errors.asp
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling
+// https://www.tutorialspoint.com/javascript/javascript_regexp_object.htm
+// https://www.w3schools.com/js/js_debugging.asp
+// https://www.w3schools.com/js/js_strict.asp - "USE STRICT";
+
+
+
+// ---------------------------------------------------------------------hoisting
+// src: https://www.w3schools.com/js/js_hoisting.asp
+// notes: declarations are hoisted to top top of the current scope,
+//        initializations are not. To avoid bugs, always declare all variables
+//        at the beginning of every scope.
+var y; // declaration - hoisted to top
+y = 7;
+
+var z = 7; // initialization of a variable - not hoisted
+
+
+
+// ---------------------------------------------------------------------an array
+var myArray = ["item", "item2", 2, 4, 89, true];
+
+
+
+// --------------------------------------------------------------------an object
+var myObject = {"item" : 28, "item2" : 12, "item3" : true};
+
+
+
+// -----------------------------------------------------------a function literal
+var myFunc = function(param, param2){
+  // function stuff
+};
+myFunc(/*arg, arg2*/);
+
+
+
+// ---------------------------------------------------------a function statement
+function myOtherFunc(param, param2){
+  // function stuff here
+};
+
+
+
+// ------------------------------------------------------a conditional statement
+if("condition1"){
+  // do this
+}else if("condition2"){
+  // do this
+}else{
+  // or do this
+};
+
+// --------------------------------------------------------a ternary conditional
+var theAnswer = Math.PI > 4 ? "yep" : "nope";
+
+
+
+// ----------------------------------------------------------------a switch case
+switch("condition"){
+  case("condition"):
+    // do stuff
+    break;
+  case("condition"):
+    // do more stuff
+    break;
+  default:
+    // set default stuff
+    break;
+};
+
+
+
+// -----------------------------------------------------------------a while loop
+var text = "",
+    i = 0;
+while(i < 5){
+  text += "The number is: " + i + " ";
+  i++;
+  console.log(text);
+};
+
+
+
+// -------------------------------------------------------------------a for loop
+var cars = ["ford", "dodge", "chevy", "honda"];
+for(i = 0; i < length.cars; i++){
+  // do stuff if true
+};
+
+
+
+// ----------------------------------------------------------------a for in loop
+var person = {fname:"john", lname:"doe", age:25},
+    txt = "",
+    x;
+
+for(x in person){
+  txt += person[x];
+  console.log(txt);
+};
+
+
+
+// -----------------------------------------------------------------loop control
+// src: https://www.tutorialspoint.com/javascript/javascript_loop_control.htm
+var a = 1;
+console.log("starting loop");
+while(a < 20){// loop to 20
+  if(a == 10){ // when the loop reaches 10
+    break;
+  };
+  a = a + 1;
+  console.log(a);
+};
+console.log("loop done");
+
+
+
+// --------------------------------------------------try catch throw validations
+// src: https://www.w3schools.com/js/js_errors.asp
+// src: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling
+// notes: try - allows you to define a block of code to be tested for errors while it is being executed.
+//        catch - allows you to define a block of code to be executed, if an error occurs in the try block.
+//        throw - allows you to create a custom error.
+//        finally - lets you execute code, after try and catch, regardless of the result.
+//        If you use throw together with try and catch, you can control program flow and generate custom error messages.
+try{
+  // block of code to try
+  throw "all exceptions";
+}catch(err){
+  // block of code to handle errors
+  console.log(err);
+}finally{
+  // block of code to be executed regardless of the try / catch result
+}
+
+
 
 // --------------------------------check to see if an external script has loaded
 function loaded(){
@@ -157,12 +305,12 @@ showDate();
 var images = [];
 
 function preloadImages(){
-  for(i=0; i<preloadImages.arguments.length; i++){
+  for(i=0; i < preloadImages.arguments.length; i++){
     images[i] = new Image();
     images[i].src = preloadImages.arguments[i];
   };
 };
-preloadImages("../../img/lasagna.png", "../../img/tomatoes.png", "../../img/lettuce.png");
+//preloadImages("../../img/lasagna.png", "../../img/tomatoes.png", "../../img/lettuce.png");
 console.log(images);
 
 
@@ -269,7 +417,7 @@ function doSomething(arg1){
 
 // ----------------------------------------------Get prime numbers from 0 to 100
 // src: mike hejja
-for(counter = 0; counter <= 100; counter++){
+for(var counter = 0; counter <= 100; counter++){
     var notPrime = false;
 
     for(i = 2; i <= counter; i++){
@@ -370,8 +518,85 @@ function getCategory(age){
   return category;
 
 };
-var ageCategory = getCategory(15);
+var ageCategory = getCategory(38);
 console.log(ageCategory);
+
+
+
+// -------------------Check the properties of an object when using a for-in loop
+// src: https://modernweb.com/45-useful-javascript-tips-tricks-and-best-practices/
+// notes: This code snippet could be useful in order to avoid iterating through
+//        the properties from the object’s prototype.
+var object1 = {"name" : "adrian sane"};
+
+for (var item in object1){
+  if(object1.hasOwnProperty(name)){
+    // do something with name
+  };
+};
+
+
+
+// ----------------------------------------redirect to a different page on click
+// src: https://appendto.com/2016/04/javascript-redirect-how-to-redirect-a-web-page-with-javascript/
+document.getElementById("btn").onclick = function(){
+  window.location = "https://www.google.com/";
+  document.getElementById("message").innerHTML = "You will be redirected in 10 seconds";
+};
+
+
+
+// ------------------------------------auto redirect after a certain time period
+// src: https://appendto.com/2016/04/javascript-redirect-how-to-redirect-a-web-page-with-javascript/
+// notes: If you pass a string into setTimeout() or setInterval(), the string
+//        will be evaluated the same way as with eval, which is slow.
+window.setTimeout(function(){
+  //window.location = "https://www.facebook.com/";
+},3000);
+
+// setInterval(funcNameHere, 1000);
+// setTimeout(funcNameHere, 5000);
+
+
+// ---------------------------------------------------------------Redirect types
+function jsRedirects(){
+// Sets the new location of the current window.
+var first = window.location = "http://www.example.com";
+
+// Sets the new href (URL) for the current window.
+var second = window.location.href = "http://www.example.com";
+
+// Assigns a new URL to the current window.
+var third = window.location.assign("http://www.example.com");
+
+// Replaces the location of the current window with the new one.
+var fourth = window.location.replace("http://www.example.com");
+
+// Sets the location of the current window itself.
+var fifth = self.location = "http://www.example.com";
+
+// Sets the location of the topmost window of the current window.
+var sixth = top.location = "http://www.example.com";
+};
+
+
+
+// -----------------------------------------------------dom compatibility object
+// src: https://www.tutorialspoint.com/javascript/javascript_html_dom.htm
+// notes: use either W3C DOM or IE 4 DOM depending on their availability. Checks
+//        for the existence of a method or property to determine whether the
+//        browser has the capability you desire.
+if(document.getElementById){
+  // if the W3C method exists, do code stuff here
+  console.log("W3C methods capable");
+}else if(document.all){
+  // if the all[] array exists, use it
+}else{
+  // otherwise, use the legacy dom
+  console.log("IE4 DOM capable");
+};
+
+
 
 
 
