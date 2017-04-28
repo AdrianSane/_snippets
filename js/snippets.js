@@ -617,6 +617,7 @@ for (var item in object1){
     // do something with name
   };
 };
+console.log(object1);
 
 
 
@@ -735,7 +736,7 @@ var userAgent = navigator.userAgent,
       console.log("Unknown browser");
     };
 
-    console.log(version);
+console.log(version);
 
 
 
@@ -809,26 +810,23 @@ function detect(){
   };
   operaVersion();
 
-
-
-
-
-}
+};
 detect();
+
 
 
 // -----------------------------------------------------user browser information
 // src: https://www.w3schools.com/jsref/prop_nav_useragent.asp
 var userBrowserInfo = "";
-  userBrowserInfo += "Browser CodeName: " + navigator.appCodeName + " ";
-  userBrowserInfo += "Browser Name: " + navigator.appName + " ";
-  userBrowserInfo += "Browser Version: " + navigator.appVersion + " ";
-  userBrowserInfo += "Cookies Enabled: " + navigator.cookieEnabled + " ";
-  userBrowserInfo += "Browser Language: " + navigator.language + " ";
-  userBrowserInfo += "Browser Online: " + navigator.onLine + " ";
-  userBrowserInfo += "Platform: " + navigator.platform + " ";
-  userBrowserInfo += "User-agent header: " + navigator.userAgent + " ";
-  console.log(userBrowserInfo);
+    userBrowserInfo += "Browser CodeName: " + navigator.appCodeName + " ";
+    userBrowserInfo += "Browser Name: " + navigator.appName + " ";
+    userBrowserInfo += "Browser Version: " + navigator.appVersion + " ";
+    userBrowserInfo += "Cookies Enabled: " + navigator.cookieEnabled + " ";
+    userBrowserInfo += "Browser Language: " + navigator.language + " ";
+    userBrowserInfo += "Browser Online: " + navigator.onLine + " ";
+    userBrowserInfo += "Platform: " + navigator.platform + " ";
+    userBrowserInfo += "User-agent header: " + navigator.userAgent + " ";
+console.log(userBrowserInfo);
 
 
 
@@ -914,7 +912,7 @@ triArea(5, 10);
 
 // --------------------------------------------find averages of a set of numbers
 // notes: The average is the sum of all items divided by the number of items.
-//        Remember the order of operations. PEMDAS
+//        Remember the order of operations. (PEMDAS)
 function averages(){
   var scores = {
         "a": 70,
