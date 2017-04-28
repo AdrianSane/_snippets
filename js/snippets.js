@@ -658,6 +658,35 @@ var sixth = top.location = "http://www.example.com";
 
 
 
+// -----------------------------------------open a popup window using javascript
+// src: https://dzone.com/articles/how-open-window-using
+function openWindow(){
+  window.open ("http://www.riotmind.nyc","mywindow");
+};
+
+
+
+// ----------------------------------------------check when a browser has closed
+// src: https://webdesignledger.com/javascript-code-snippets/
+// notes: If your users are going to click the close button you may want to be
+//        notified in advance. Some more annoying websites will really push this
+//        functionality for their own marketing needs. Generating popup ads or
+//        alert boxes to keep the user stuck on their page a little longer – not
+//        the best way to go about it. But there are other more useful features
+//        you can do this with detection. As an example you may want to clear
+//        out a user’s cookie session immediately before closing the window.
+//        This could be for your own security reasons, and to stop anyone else
+//        from accessing a different user’s account by mistake.
+function checkBrowser(){
+  // triggers on clicking the close button, Alt+F4, File->close
+  if(window.event.clientX < 0 && window.event.clientY < 0){
+    window.open("snippets.html", "left=12000, top=1200, width=120, height=50");
+    console.log("Browser Window Closed");
+  };
+};
+
+
+
 // -----------------------------------------------------dom compatibility object
 // src: https://www.tutorialspoint.com/javascript/javascript_html_dom.htm
 // notes: use either W3C DOM or IE 4 DOM depending on their availability. Checks
@@ -702,6 +731,84 @@ var userAgent = navigator.userAgent,
 
     console.log(version);
 
+
+
+// -------------------------------------------------------more browser detection
+// src: https://webdesignledger.com/javascript-code-snippets/
+
+function detect(){
+  // internet explorer
+  var ie = document.all != null, //ie4 and above
+      ie5 = document.getElementById && document.all,
+      ie6 = document.getElementById && document.all && (navigator.appVersion.indexOf("MSIE>=0"));
+  console.log(ie);
+  console.log(ie5);
+  console.log(ie6);
+
+  if(ie || ie5 || ie6){
+    console.log("Internet Explorer Used")
+  }else{
+    console.log("Internet Explorer not used");
+  };
+
+  // netscape
+  var ns4 = document.layers != null,
+      ns6 = document.getElementById && !document.all,
+      ns = ns4 || ns6;
+  console.log(ns4);
+  console.log(ns6);
+  console.log(ns);
+
+  if(ns4 || ns6 || ns){
+    console.log("Netscape is Used")
+  }else{
+    console.log("Netscape is not used");
+  };
+
+  // firefox
+  var ff = !document.layers && !document.all;
+
+  console.log(ff);
+
+  if(ff){
+    console.log("Firefox is used");
+  }else{
+    console.log("Firefox is not used");
+  };
+
+  // opera
+  var op = navigator.userAgent.indexOf("opera") > 0,
+      op7 = op && operaVersion() <= 7,
+      op8 = op && operaVersion() >= 8;
+  console.log(op);
+  console.log(op7);
+  console.log(op8);
+
+  if(op || op7 || op8){
+    console.log("Opera is used");
+  }else{
+    console.log("Opera is not used");
+  };
+
+  // detect opera version
+  function operaVersion(){
+    var agent = navigator.userAgent,
+        idx = agent.indexOf("opera");
+
+    if(idx > 1){
+      return parseInt(agent.subString(idx + 6, idx + 7));
+    }
+
+    console.log(idx);
+  };
+  operaVersion();
+
+
+
+
+
+}
+detect();
 
 
 // -----------------------------------------------------user browser information
@@ -843,6 +950,31 @@ fizzBuzz();
 
 
 
+// -----------------------------------------access global variables in a browser
+// src: https://code.tutsplus.com/tutorials/the-essentials-of-writing-high-quality-javascript--net-15145
+// notes: it’s important to be a good neighbor to the other scripts that may be
+//        in the same page and use as few global variables as possible. Any
+//        variable you don’t declare becomes a property of the global object.
+var global = "hello";
+console.log(global);
+console.log(window.global);
+console.log(window["global"]);
+console.log(this.global);
 
+
+
+// -------------------------access / pull user option values from forms and menu
+// src: https://webdesignledger.com/javascript-code-snippets/
+
+function selected(){
+  var e = document.getElementById("menu"),
+      optValue = e.options[e.selectedIndex].value,
+      optText = e.options[e.selectedIndex].text;
+
+  console.log(e);
+  console.log(optValue); // the option value attribute
+  console.log(optText); // internal text inside option element
+};
+selected();
 
 });// end snippets
