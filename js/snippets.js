@@ -494,6 +494,12 @@ function doSomething(arg1){
 
 // ----------------------------------------------Get prime numbers from 0 to 100
 // src: mike hejja
+// notes: A prime number is a whole number greater than 1, whose only two
+//        whole-number factors are 1 and itself. The first few prime numbers are
+//        2, 3, 5, 7, 11, 13, 17, 19, 23, and 29. A prime number (or a prime) is
+//        a natural number greater than 1 that has no positive divisors other
+//        than 1 and itself. A natural number greater than 1 that is not a prime
+//        number is called a composite number.
 for(var counter = 0; counter <= 100; counter++){
     var notPrime = false;
 
