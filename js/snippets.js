@@ -13,6 +13,8 @@ $(document).ready(function(){// begin snippets
 // https://www.tutorialspoint.com/javascript/javascript_regexp_object.htm
 // https://www.w3schools.com/js/js_debugging.asp
 // https://www.w3schools.com/js/js_strict.asp - "USE STRICT";
+// https://www.w3schools.com/js/js_object_prototypes.asp
+// http://stackoverflow.com/questions/22978243/get-userinput-in-javascript
 
 
 
@@ -33,6 +35,23 @@ var myArray = ["item", "item2", 2, 4, 89, true];
 
 
 
+// ---------------------------------------------------------------a matrix array
+function matrix(){
+  var matrix_A = [ [], [], [], [] ];
+
+  for(var i = 0; i < 4; i++){
+
+    for(var j = 0; j < 4; j++){
+      matrix_A[i][j] = i * j;
+    };
+
+  };
+  console.log(matrix_A);
+}
+matrix();
+
+
+
 // --------------------------------------------------------------------an object
 var myObject = {"item" : 28, "item2" : 12, "item3" : true};
 
@@ -50,6 +69,24 @@ myFunc(/*arg, arg2*/);
 function myOtherFunc(param, param2){
   // function stuff here
 };
+
+
+
+// --------------------------------------------a closure (inner/nested function)
+// notes: Inner functions (closures) store their outer function’s variables by
+//        reference, not by value. a closure is any function that keeps
+//        reference to variables from its parent’s scope even after the parent
+//         has returned.
+function globalFunction(param){
+  var randomVar = " randomVar called in closure ";
+
+  function closureFunction(){
+    console.log("using a variable in its parent function" +randomVar + param);
+  };
+
+  closureFunction();
+};
+globalFunction(" global function call ");
 
 
 
@@ -93,7 +130,19 @@ while(i < 5){
 
 
 
+// --------------------------------------------------------------a do while loop
+var droga = 5,
+    notDroga = 20;
+
+do{
+  console.log("droga droga5");
+  droga++;
+}while(droga < notDroga);
+
+
+
 // -------------------------------------------------------------------a for loop
+// notes: Avoid using a for-in loop for arrays, better to use .length
 var cars = ["ford", "dodge", "chevy", "honda"];
 for(i = 0; i < length.cars; i++){
   // do stuff if true
@@ -145,6 +194,34 @@ try{
 }finally{
   // block of code to be executed regardless of the try / catch result
 }
+
+
+
+// ---------------------------------------a standard object constructor function
+// ------------creates an object prototype
+// src: https://www.w3schools.com/js/js_object_prototypes.asp
+// notes: The standard way to create an object prototype is to use an object
+//        onstructor function. With a constructor function, you can use the new
+//        keyword to create new objects from the same prototype. The constructor
+//        function is the prototype for Person objects. It is considered good
+//        practice to name constructor function with an upper-case first letter
+function Person(first, last, age, eyecolor){
+  this.firstName = first;
+  this.lastname = last;
+  this.age = age;
+  this.eyeColor = eyecolor;
+}
+
+var myMother = new Person("Iluminada", "Barber", 56, "brown"),
+    myFather = new Person("Bennigno", "Velazquez", 53, "brown");
+console.log(myMother);
+
+
+
+// -------------------------------------------------------properties and methods
+// src: https://www.w3schools.com/js/js_object_prototypes.asp
+// notes:
+
 
 
 
@@ -595,6 +672,174 @@ if(document.getElementById){
   // otherwise, use the legacy dom
   console.log("IE4 DOM capable");
 };
+
+
+
+// -------------------------------------------------------user browser detection
+// src: https://www.tutorialspoint.com/javascript/javascript_browsers_handling.htm
+// src: https://www.whatismybrowser.com/detect/what-is-my-user-agent
+// notes: userAgent property returns the value of the user-agent header sent by
+//        the browser to the server. The value returned, contains information
+//        about the name, version and platform of the browser.
+var userAgent = navigator.userAgent,
+    opera = (userAgent.indexOf("Opera") != -1),
+    ie = (userAgent.indexOf("MSIE") != -1),
+    gecko = (userAgent.indexOf("Gecko") != -1),
+    netscape = (userAgent.indexOf("Mozilla") != -1),
+    version = navigator.appVersion;
+
+    if(opera){
+      console.log("OPERA based browser");
+    }else if(ie){
+      console.log("IE based browser");
+    }else if(gecko){
+      console.log("GECKO based browser");
+    }else if(netscape){
+      console.log("NETSCAPE based browser");
+    }else{
+      console.log("Unknown browser");
+    };
+
+    console.log(version);
+
+
+
+// -----------------------------------------------------user browser information
+// src: https://www.w3schools.com/jsref/prop_nav_useragent.asp
+var userBrowserInfo = "";
+  userBrowserInfo += "Browser CodeName: " + navigator.appCodeName + " ";
+  userBrowserInfo += "Browser Name: " + navigator.appName + " ";
+  userBrowserInfo += "Browser Version: " + navigator.appVersion + " ";
+  userBrowserInfo += "Cookies Enabled: " + navigator.cookieEnabled + " ";
+  userBrowserInfo += "Browser Language: " + navigator.language + " ";
+  userBrowserInfo += "Browser Online: " + navigator.onLine + " ";
+  userBrowserInfo += "Platform: " + navigator.platform + " ";
+  userBrowserInfo += "User-agent header: " + navigator.userAgent + " ";
+  console.log(userBrowserInfo);
+
+
+
+// --------return random info from an array using getter and setter in a closure
+function cityLocation(){
+  var city = [
+    "newyork",
+    "boston",
+    "chicago",
+    "los angeles",
+    "miami",
+    "dallas",
+    "denver",
+    "tallahassee",
+    "hollywood",
+    "berlin",
+    "london",
+    "paris",
+    "rome",
+    "dehli",
+    "moscow"
+  ];
+
+  return{
+    get: function(){// obtains the current value of "city"
+      console.log(city[Math.floor(Math.random() * city.length)]);
+    },
+    // set a new city if needed
+    set: function(newCity){// updates the current value of "city"
+      city = newCity
+    }
+  };
+};
+
+var myLocation = cityLocation();
+
+myLocation.get();
+//myLocation.set("guyana");
+//myLocation.get();
+
+
+
+// --------------------------------------get users input and push it to an array
+// src: http://stackoverflow.com/questions/22978243/get-userinput-in-javascript
+// src: http://stackoverflow.com/questions/9951500/javascriptstoring-values-in-array
+document.getElementById("userData").onclick = function(){
+  var data = [],
+        a = 1,
+      text = document.getElementById("userInput").value;
+
+        for(i = 0; i < data.length; i++){
+          data[i] = a;
+          a++;
+        }
+
+      data.push(text);
+      console.log(data);
+};
+
+
+
+// ------------------------------------------------------calculate a persons age
+// src: https://www.w3schools.com/html/html_form_input_types.asp
+document.getElementById("yearSubmit").onclick = function(){
+  var now = new Date(),
+      thisYear = now.getFullYear(),
+      userYear = document.getElementById("userYear").value,
+      age = thisYear - userYear;
+
+  document.getElementById("ageOutput").innerHTML = "you are: " + age + " years old";
+};
+
+
+
+// ---------------------------------------------calculate the area of a triangle
+function triArea(w, h){
+  var area = w * h / 2;
+  console.log(area);
+};
+triArea(5, 10);
+
+
+
+// --------------------------------------------find averages of a set of numbers
+// notes: The average is the sum of all items divided by the number of items.
+//        Remember the order of operations. PEMDAS
+function averages(){
+  var scores = {
+        "a": 70,
+        "b": 90,
+        "c": 85,
+        "d": 65,
+        "e": 95,
+        "f": 80
+      },
+      average = Math.floor(
+        (scores.a +
+        scores.b +
+        scores.c +
+        scores.d +
+        scores.e +
+        scores.f) / 6
+      );
+  console.log("Youre average is: " + average);
+}
+averages();
+
+
+
+// ---------------------------------------------------------------------fizzBuzz
+function fizzBuzz(){
+  var fizz = "fizz",
+      buzz = "buzz";
+
+  for(i=0; i<=20; i++){
+    if(i % 2 == 0){
+      console.log(fizz);
+    }else{
+      console.log(buzz);
+    }
+  };
+
+};
+fizzBuzz();
 
 
 
