@@ -804,7 +804,7 @@ function detect(){
 
     if(idx > 1){
       return parseInt(agent.subString(idx + 6, idx + 7));
-    }
+    };
 
     console.log(idx);
   };
@@ -969,7 +969,6 @@ console.log(this.global);
 
 // -------------------------access / pull user option values from forms and menu
 // src: https://webdesignledger.com/javascript-code-snippets/
-
 function selected(){
   var e = document.getElementById("menu"),
       optValue = e.options[e.selectedIndex].value,
