@@ -815,6 +815,114 @@ detect();
 
 
 
+/* -----------------------------------------------------------------------------
+Browser detection and applying classes to html based on operating system and browser
+----------------------------------------------------------------------------- */
+// src: https://css-tricks.com/snippets/jquery/browser-detetction/
+// src: http://davecardwell.co.uk/javascript/jquery/plugins/jquery-browserdetect/
+// dependancy: jquery, JQBrowser
+
+// --------------------------------------------------------------------JQBrowser
+eval(function(p,a,c,k,e,d){e=function(c){return(c<a?"":e(c/a))+String.fromCharCode(c%a+161)};while(c--){if(k[c]){p=p.replace(new RegExp(e(c),'g'),k[c])}}return p}('Ö ¡(){® Ø={\'¥\':¡(){¢ £.¥},\'©\':{\'±\':¡(){¢ £.©.±},\'¯\':¡(){¢ £.©.¯}},\'¬\':¡(){¢ £.¬},\'¶\':¡(){¢ £.¶},\'º\':¡(){¢ £.º},\'Á\':¡(){¢ £.Á},\'À\':¡(){¢ £.À},\'½\':¡(){¢ £.½},\'¾\':¡(){¢ £.¾},\'¼\':¡(){¢ £.¼},\'·\':¡(){¢ £.·},\'Â\':¡(){¢ £.Â},\'³\':¡(){¢ £.³},\'Ä\':¡(){¢ £.Ä},\'Ã\':¡(){¢ £.Ã},\'Å\':¡(){¢ £.Å},\'¸\':¡(){¢ £.¸}};$.¥=Ø;® £={\'¥\':\'¿\',\'©\':{\'±\':²,\'¯\':\'¿\'},\'¬\':\'¿\',\'¶\':§,\'º\':§,\'Á\':§,\'À\':§,\'½\':§,\'¾\':§,\'¼\':§,\'·\':§,\'Â\':§,\'³\':§,\'Ä\':§,\'Ã\':§,\'Å\':§,\'¸\':§};Î(® i=0,«=».ì,°=».í,¦=[{\'¤\':\'Ý\',\'¥\':¡(){¢/Ù/.¨(°)}},{\'¤\':\'Ú\',\'¥\':¡(){¢ Û.³!=²}},{\'¤\':\'È\',\'¥\':¡(){¢/È/.¨(°)}},{\'¤\':\'Ü\',\'¥\':¡(){¢/Þ/.¨(°)}},{\'ª\':\'¶\',\'¤\':\'ß Ñ\',\'¥\':¡(){¢/à á â/.¨(«)},\'©\':¡(){¢ «.¹(/ã(\\d+(?:\\.\\d+)+)/)}},{\'¤\':\'Ì\',\'¥\':¡(){¢/Ì/.¨(«)}},{\'¤\':\'Í\',\'¥\':¡(){¢/Í/.¨(°)}},{\'¤\':\'Ï\',\'¥\':¡(){¢/Ï/.¨(«)}},{\'¤\':\'Ð\',\'¥\':¡(){¢/Ð/.¨(«)}},{\'ª\':\'·\',\'¤\':\'å Ñ\',\'¥\':¡(){¢/Ò/.¨(«)},\'©\':¡(){¢ «.¹(/Ò (\\d+(?:\\.\\d+)+(?:b\\d*)?)/)}},{\'¤\':\'Ó\',\'¥\':¡(){¢/æ|Ó/.¨(«)},\'©\':¡(){¢ «.¹(/è:(\\d+(?:\\.\\d+)+)/)}}];i<¦.Ë;i++){µ(¦[i].¥()){® ª=¦[i].ª?¦[i].ª:¦[i].¤.Õ();£[ª]=É;£.¥=¦[i].¤;® ­;µ(¦[i].©!=²&&(­=¦[i].©())){£.©.¯=­[1];£.©.±=Ê(­[1])}ê{® Ç=Ö ë(¦[i].¤+\'(?:\\\\s|\\\\/)(\\\\d+(?:\\\\.\\\\d+)+(?:(?:a|b)\\\\d*)?)\');­=«.¹(Ç);µ(­!=²){£.©.¯=­[1];£.©.±=Ê(­[1])}}×}};Î(® i=0,´=».ä,¦=[{\'ª\':\'¸\',\'¤\':\'ç\',\'¬\':¡(){¢/é/.¨(´)}},{\'¤\':\'Ô\',\'¬\':¡(){¢/Ô/.¨(´)}},{\'¤\':\'Æ\',\'¬\':¡(){¢/Æ/.¨(´)}}];i<¦.Ë;i++){µ(¦[i].¬()){® ª=¦[i].ª?¦[i].ª:¦[i].¤.Õ();£[ª]=É;£.¬=¦[i].¤;×}}}();',77,77,'function|return|Private|name|browser|data|false|test|version|identifier|ua|OS|result|var|string|ve|number|undefined|opera|pl|if|aol|msie|win|match|camino|navigator|mozilla|icab|konqueror|Unknown|flock|firefox|netscape|linux|safari|mac|Linux|re|iCab|true|parseFloat|length|Flock|Camino|for|Firefox|Netscape|Explorer|MSIE|Mozilla|Mac|toLowerCase|new|break|Public|Apple|Opera|window|Konqueror|Safari|KDE|AOL|America|Online|Browser|rev|platform|Internet|Gecko|Windows|rv|Win|else|RegExp|userAgent|vendor'.split('|')))
+// --------------------------------------------------------------------JQBrowser
+
+// define browsers
+var aol = $.browser.aol(), // AOL Explorer
+    camino = $.browser.camino(), // Camino
+    firefox = $.browser.firefox(), // FireFox
+    flock = $.browser.flock(), // Flock
+    icab = $.browser.icab(), // iCab
+    konqueror = $.browser.konqueror(), // Konqueror
+    mozilla = $.browser.mozilla(), // Mozilla
+    msie = $.browser.msie(), // Internet Explorer Win / Mac
+    netscape = $.browser.netscape(), // Netscape
+    opera = $.browser.opera(), // Opera
+    safari = $.browser.safari(), // Safari
+    userbrowser = $.browser.browser(); // Detected users browser
+
+// define operating systems
+var linux = $.browser.linux(), // Linux os
+    mac = $.browser.mac(), // Mac os
+    win = $.browser.win(); // Microsoft Windows os
+
+// get users os Version
+var userversion = $.browser.version.number();
+
+// check operating systems
+if(mac == true){
+	// $("html").addClass("mac");
+  console.log("mac: " + mac);
+}else if(linux == true){
+	// $("html").addClass("linux");
+  console.log("linux: " + linux);
+}else if(win == true){
+	// $("html").addClass("windows");
+  console.log("win: " + win);
+}
+
+// get users browser
+if (userbrowser == "Safari") {
+
+	// $("html").addClass("safari");
+  console.log("User Browser Info: " + userbrowser);
+
+} else if (userbrowser == "Firefox") {
+
+	// $("html").addClass("firefox");
+  console.log("User Browser Info: " + userbrowser);
+
+} else if (userbrowser == "Camino") {
+
+	// $("html").addClass("camino");
+  console.log("User Browser Info: " + userbrowser);
+
+} else if (userbrowser == "AOL Explorer") {
+
+	// $("html").addClass("aol");
+  console.log("User Browser Info: " + userbrowser);
+
+} else if (userbrowser == "Flock") {
+
+	// $("html").addClass("flock");
+  console.log("User Browser Info: " + userbrowser);
+
+} else if (userbrowser == "iCab") {
+
+	// $("html").addClass("icab");
+  console.log("User Browser Info: " + userbrowser);
+
+} else if (userbrowser == "Konqueror") {
+
+	// $("html").addClass("konqueror");
+  console.log("User Browser Info: " + userbrowser);
+
+} else if (userbrowser == "Mozilla") {
+
+	// $("html").addClass("mozilla");
+  console.log("User Browser Info: " + userbrowser);
+
+} else if (userbrowser == "Netscape") {
+
+	// $("html").addClass("netscape");
+  console.log("User Browser Info: " + userbrowser);
+
+} else if (userbrowser == "Opera") {
+
+	// $("html").addClass("opera");
+  console.log("User Browser Info: " + userbrowser);
+
+} else if (userbrowser == "Internet Explorer") {
+
+	// $("html").addClass("ie");
+  console.log("User Browser Info: " + userbrowser);
+
+} else {}
+
+$("html").addClass("" + userversion + "");
+console.log("User Version: " + userversion);
+
+
+
 // -----------------------------------------------------user browser information
 // src: https://www.w3schools.com/jsref/prop_nav_useragent.asp
 var userBrowserInfo = "";
@@ -826,7 +934,7 @@ var userBrowserInfo = "";
     userBrowserInfo += "Browser Online: " + navigator.onLine + " ";
     userBrowserInfo += "Platform: " + navigator.platform + " ";
     userBrowserInfo += "User-agent header: " + navigator.userAgent + " ";
-console.log(userBrowserInfo);
+console.log("User Browser Info: " + userBrowserInfo);
 
 
 
@@ -979,5 +1087,36 @@ function selected(){
   console.log(optText); // internal text inside option element
 };
 selected();
+
+
+
+// ------------------------------------------------Add and remove class on hover
+// src: https://css-tricks.com/snippets/jquery/addingremoving-class-on-hover/
+// dependancy: jquery, css
+$("#elm").hover(
+  function(){
+    $(this).addClass("hover");
+  },
+  function(){
+    $(this).removeClass("hover");
+  }
+);
+
+
+
+// ----------------------------------------------------Broken img link handeling
+// src: https://css-tricks.com/snippets/jquery/better-broken-image-handling/
+// dependancy: jquery
+function imgReplace(){
+  // replace missing images
+  $("img").error(function(){
+    $(this).attr("src", "missing.png");
+  });
+
+  // hide missing images
+  $("img").error(function(){
+    $(this).hide();
+  });
+};
 
 });// end snippets
