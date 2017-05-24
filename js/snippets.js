@@ -644,6 +644,7 @@ window.setTimeout(function(){
 
 // ---------------------------------------------------------------Redirect types
 function jsRedirects(){
+
 // Sets the new location of the current window.
 var first = window.location = "http://www.example.com";
 
@@ -1118,5 +1119,25 @@ function imgReplace(){
     $(this).hide();
   });
 };
+
+
+
+// ----------------------------------------------------------CTA Event Handelers
+// dependancy: jquery, greensock
+// cta handlers
+    function doCtaOver() {
+      // stuff to do when listeners are triggered
+      //TweenLite.to(banner.ctaInner, 0.2, {autoAlpha:1, ease: Circ.easeOut, tranformOrigin: "center center", z:0.1, rotationZ:0.01});
+    };
+
+    function doCtaOut() {
+      // stuff to do when listeners are triggered
+      //TweenLite.to(banner.ctaInner, 0.2, {autoAlpha:0, ease: Circ.easeOut, tranformOrigin: "center center", z:0.1, rotationZ:0.01});
+    };
+
+    // cta event listeners
+    // event listeners listening for mouse events on an element, calling the event handlers
+    $("#elm").addEventListener('mouseover', doCtaOver);
+    $("#elm").addEventListener('mouseout', doCtaOut);
 
 });// end snippets
