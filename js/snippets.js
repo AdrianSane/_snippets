@@ -15,6 +15,7 @@ $(document).ready(function(){// begin snippets
 // https://www.w3schools.com/js/js_strict.asp - "USE STRICT";
 // https://www.w3schools.com/js/js_object_prototypes.asp
 // http://stackoverflow.com/questions/22978243/get-userinput-in-javascript
+// https://rainsoft.io/how-to-iterate-easily-over-object-properties-in-javascript/
 
 
 
@@ -65,11 +66,88 @@ myFunc(/*arg, arg2*/);
 
 
 
+
+
 // ---------------------------------------------------------a function statement
 function myOtherFunc(param, param2){
   // function stuff here
 };
 
+
+
+
+// ------------------------------------------------------------an arrow function
+// src: https://www.youtube.com/watch?v=22fyYvxz-do&list=PLQe7hfWfchpp2xqDMydROU4apdv2d9qjb&index=8&t=45s
+// notes: parenthesis are optional when theres only one parameter. if you need a function
+//        with no parameters, it requires parenthesis. Arrow functions work well
+//        with higher order functions such as map, filter and reduce, that take other functions
+//        as arguments for processing collections of data. An arrow function does not
+//        create its own "this" context. When you want to return an object using an arrow
+//        function, you have to put the object in parenthesis.
+
+//syntax
+(param1, param2) => {statements}
+(param1, param2) => expression
+(param1, param2) => {return expression;}
+
+(singleParam) => {statements}
+singleParam => {statements}
+
+() => {statements}
+() => expression
+() => {return expression}
+
+(param1, param2, paramN) => expression
+
+// a normal function
+var multiply = function(x, y){
+  return x * y;
+};
+
+// as an arrow function
+var multiplyAgain = (x,y) => {return x * y};
+
+// or
+
+var multiplyYetAgain = (x,y) => x * y;
+
+
+//example using higher order function map
+var material = [
+  "Adamantium",
+  "Boron",
+  "Tritanium",
+  "Unobtanium"
+];
+
+// map, using a standard function
+var materials1 = materials.map(function(material){
+  return material.length;
+});
+
+// map, using an arrow function
+var materials2 = materials.map((material) => {
+  return material.length;
+});
+
+// map using an even shorter arrow function
+var materials3 = materials.map(material => material.length);
+
+// no binding of "this" in an arrow function
+function person(){
+  //this referes to the global object
+  this.age = 0;
+
+  // an arrow function in the setInterval method
+  setInterval(() => {
+    //this refers to the person object (the parent object)
+    this.age++;
+  }, 1000);
+}
+ var p = new person();
+
+ //returning object literals in an arrow function
+ var func = () => ({foo:1});
 
 
 // --------------------------------------------a closure (inner/nested function)
@@ -1137,7 +1215,190 @@ function imgReplace(){
 
     // cta event listeners
     // event listeners listening for mouse events on an element, calling the event handlers
-    $("#elm").addEventListener('mouseover', doCtaOver);
-    $("#elm").addEventListener('mouseout', doCtaOut);
+          //$("#elm").addEventListener('mouseover', doCtaOver);
+          //$("#elm").addEventListener('mouseout', doCtaOut);
+
+
+
+// ----------------------------------------grab dom elements using js and jquery
+// dependancy: jquery
+// dom elements using a namespace
+
+var riot = {
+  win : $("window"),
+  html : $("html"),
+  body : $("body"),
+  header : $("header"),
+  nav : $("nav")
+}
+
+console.log(riot);
+console.log(riot.body);
+console.log(riot.header);
+console.log(riot.nav);
+console.log(riot.html);
+console.log(riot.win);
+
+
+
+
+
+// ---------------------------------------error handeling with try, catch, throw
+// src: https://www.youtube.com/watch?v=cFTFtuEQ-10&list=PLQe7hfWfchpp2xqDMydROU4apdv2d9qjb&index=7
+// notes: error handeling is used most when dealing with data from other Sources
+//        like user input. It's common to see error handeling when dealing with
+//        ajax calls or asynchro nous code. Once an error is reached in the try
+//        statement, it will go straight to the catch statement and skip all
+//        of the remaining code in the try statement. In order for a try catch
+//        to work, the code must be runnable. Try Catch only handles runtime
+//        errors. You can create custom errors with the throw statement.
+
+// try: lets you test a block of code for errors
+// catch: lets you handle the errors
+// throw: lets you create custom errors including numbers or strings or booleans
+// finally: lets you execute code after try and catch regardless of the result
+
+// try some code
+try{
+
+  console.log("start of try runs");
+
+  unicycle; // will cause an error
+
+  console.log("end of try runs -- never reached");
+
+} catch(err){ // pass in an err object to the catch statement
+
+  console.log("error has occured: " + err);
+
+} finally{
+
+  console.log("this code is alway run");
+}
+
+
+// error handeling example with data from a server
+let json = "{'age' : 30}";
+
+try{
+  let user = JSON.parse(json);
+
+  if(!user.name){// if there is no user.name
+    // throw a new syntax error
+    throw new syntaxError("Incomplete data: no name");
+  }
+
+  console.log(user.name);
+
+} catch(e){
+
+  console.log("JSON error: " + e.message);
+
+};
+
+
+
+
+
+// -------------------------------------------iterating through items in an arry
+// src: https://www.youtube.com/watch?v=Urwzk6ILvPQ&t=317s&index=8&list=PLQe7hfWfchpp2xqDMydROU4apdv2d9qjb
+// Note: go through each item in an array and do something with those items
+
+
+
+// for each
+// do something for each item in the array
+var array1 = [1,2,3];
+
+array1.forEach(function(item, index){
+  console.log(item, index);
+});
+
+
+
+// map
+// do something with an array item, then replace it with something new
+const array2 = [1,2,3];
+
+const doubled = array2.map(function(item){
+  return item * 2;
+});
+consle.log(doubled);
+
+
+
+// filter
+// checks each item in an array against a condition to see if its true or false,
+// if true, it will put the item back in the array, if its false, it will omit it.
+// each true value will be returned in an array
+const array3 = [1,2,3];
+const evens = array3.filter(function(item){
+  return item % 2 === 0;
+});
+console.log(evens);
+
+
+
+// reduce
+// do something with the items in an array then pass the results to the next iteration
+// along with the next item in the array. the number at the end of the method is what
+// the initial result is going to be. if no initial result is given, the result will
+// default to the first item in the array.
+const array4 = [1,2,3].reduce(function(result, item){
+  return result + item;
+}, 0);
+console.log(array4);
+
+
+
+// some
+// checks to see if any item in an array meet the methods condition and returns a boolean
+const negative = [1,2,3,-1,-4,-90,11,78,4,-2].some(function(item){
+  return item < 0;
+});
+console.log(negative);
+
+
+
+// every
+// checks to see if ALL items meet the methods condition and returns a boolean
+const positive = [2,4,6,8,10].every(function(item){
+  return > 0;
+});
+console.log(positive);
+
+
+
+// find
+// goes through all array items and checks it against a condition, if true, it will
+// return that item. will return undefined if false.
+const arrayOfObj = [ {id: "a"}, {id: "b"}, {id: "c"} ];
+const found = arrayOfObj.find(function(item){
+  return item.id === "b";
+});
+console.log(found);
+
+
+
+// find index
+// will return the index of the item instead of the item when hecked against a condition.
+// if the targeted index is not found, it will return a negative
+const arrayOfObj2 = [ {id: "a"}, {id: "b"}, {id: "c"} ];
+const foundIndex = arrayOfObj2.findIndex(function(item){
+  return item.id === "c";
+});
+console.log(foundIndex);
+
+
+
+
+
+// -----------------------------------------------iterate over object properties
+// src: https://rainsoft.io/how-to-iterate-easily-over-object-properties-in-javascript/
+
+
+
+
+
 
 });// end snippets
