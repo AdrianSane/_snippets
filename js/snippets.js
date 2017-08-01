@@ -16,6 +16,25 @@ $(document).ready(function(){// begin snippets
 // https://www.w3schools.com/js/js_object_prototypes.asp
 // http://stackoverflow.com/questions/22978243/get-userinput-in-javascript
 // https://rainsoft.io/how-to-iterate-easily-over-object-properties-in-javascript/
+// https://www.youtube.com/watch?v=1mgLWu69ijU&index=9&list=PLQe7hfWfchpp2xqDMydROU4apdv2d9qjb
+
+
+// --------------------------------------------------------------var, const, let
+// src: https://www.youtube.com/watch?v=1mgLWu69ijU&index=9&list=PLQe7hfWfchpp2xqDMydROU4apdv2d9qjb
+
+// const: for values that never change
+   const pi = 3.14;
+
+// let: for block level variables, (a block is anything in {curly braces}), when
+//      you define something with let, its only available within the block that
+//      defines it.
+   for(let i = 1; i < 3; i++){
+     console.log(i);
+   }
+
+// var: for defining something that will be available to an entire function or program (globally)
+
+
 
 
 
@@ -159,7 +178,7 @@ function globalFunction(param){
   var randomVar = " randomVar called in closure ";
 
   function closureFunction(){
-    console.log("using a variable in its parent function" +randomVar + param);
+    console.log("using a variable in its parent function" + randomVar + param);
   };
 
   closureFunction();
@@ -1203,20 +1222,20 @@ function imgReplace(){
 // ----------------------------------------------------------CTA Event Handelers
 // dependancy: jquery, greensock
 // cta handlers
-    function doCtaOver() {
-      // stuff to do when listeners are triggered
-      //TweenLite.to(banner.ctaInner, 0.2, {autoAlpha:1, ease: Circ.easeOut, tranformOrigin: "center center", z:0.1, rotationZ:0.01});
-    };
+  function doCtaOver() {
+    // stuff to do when listeners are triggered
+    TweenLite.to(banner.ctaInner, 0.2, {autoAlpha:1, ease: Circ.easeOut, tranformOrigin: "center center", z:0.1, rotationZ:0.01});
+  };
 
-    function doCtaOut() {
-      // stuff to do when listeners are triggered
-      //TweenLite.to(banner.ctaInner, 0.2, {autoAlpha:0, ease: Circ.easeOut, tranformOrigin: "center center", z:0.1, rotationZ:0.01});
-    };
+  function doCtaOut() {
+    // stuff to do when listeners are triggered
+    TweenLite.to(banner.ctaInner, 0.2, {autoAlpha:0, ease: Circ.easeOut, tranformOrigin: "center center", z:0.1, rotationZ:0.01});
+  };
 
-    // cta event listeners
-    // event listeners listening for mouse events on an element, calling the event handlers
-          //$("#elm").addEventListener('mouseover', doCtaOver);
-          //$("#elm").addEventListener('mouseout', doCtaOut);
+  // cta event listeners
+  // event listeners listening for mouse events on an element, calling the event handlers
+  $("#elm").addEventListener('mouseover', doCtaOver);
+  $("#elm").addEventListener('mouseout', doCtaOut);
 
 
 
